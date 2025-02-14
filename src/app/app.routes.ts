@@ -1,3 +1,19 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './Pages/home/home.component';
+import { SearchComponent } from './Pages/search/search.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  },
+  {
+    path: 'home',
+    component: HomeComponent
+  },
+  {
+    path: 'search/:fromStationId/:toStationId/:dateOfTravel',
+    component: SearchComponent
+  }
+];
