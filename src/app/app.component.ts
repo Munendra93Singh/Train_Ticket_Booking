@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { APIResponse, Customer } from './model/train';
 import { FormsModule } from '@angular/forms';
 import { TrainService } from './service/train.service';
@@ -21,6 +21,7 @@ export class AppComponent {
   }
   
   loggedUser: Customer = new Customer();
+  router = inject(Router);
 
   constructor() {
     const localData = localStorage.getItem('trainApp');
@@ -73,7 +74,8 @@ export class AppComponent {
       if (res.result) {
         alert("login Successfully")
         localStorage.setItem('trainApp', JSON.stringify(res.data));
-        this.loggedUser = res.data;
+        this.loggedUser = res.data;        
+        this.router.navigateByUrl('home');
         this.closeLogin();
       } else {
         alert(res.message);
@@ -84,5 +86,6 @@ export class AppComponent {
   onLogOff() {
     this.loggedUser = new Customer();
     localStorage.removeItem('trainApp')
+    this.router.navigate(['']);
   }
 }
