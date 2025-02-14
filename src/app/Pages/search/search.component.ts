@@ -21,11 +21,13 @@ export class SearchComponent implements OnInit {
   selectedTrain?: ITrain;
   // =========Booking
   passenger: any = {
-    passangerName: "",
-    age: ''
-  }
-
+  //  "passangerName1" : "",
+    "age": "",
+    //"passangerName" : "",
+ }
   passengerList: any[] = [];
+
+  
   loagedUserData: Customer = new Customer();
 
   constructor() {
@@ -71,24 +73,24 @@ export class SearchComponent implements OnInit {
   }
 
   addPassenger() {
+    debugger
     const strObj = JSON.stringify(this.passenger);
     const parseObj = JSON.parse(strObj);
     this.passengerList.push(parseObj);
-
   }
+  
     bookTickets() {
       debugger;
       const bookingObj = {
         bookingId: 0,
         trainId: this.selectedTrain?.trainId,
-        passengerId: this.loagedUserData.passengerId,
+        passengerId: this.loagedUserData.passengerID,
         travelDate: this.searchData.dateOfTravel,
         bookingDate: new Date(),
         totalSeats: 0,
         TrainAppBookingPassengers: [] as any
       };
       bookingObj.TrainAppBookingPassengers = this.passengerList;
-      debugger
       bookingObj.totalSeats = this.passengerList.length;
       this.trainerService.onBookTrain(bookingObj).subscribe((re: APIResponse)=> {
         if (re.result) {
@@ -109,6 +111,7 @@ export class SearchComponent implements OnInit {
 
   // bookTickets() {
   //   // Validate required fields
+  //   debugger
   //   if (!this.selectedTrain || !this.loagedUserData || !this.searchData.dateOfTravel || !this.passengerList) {
   //     alert("Please fill in all required fields.");
   //     return;

@@ -35,7 +35,7 @@ export interface APIResponse{
 }
 
 export class Customer {
-  passengerId: number;
+  passengerID: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -45,7 +45,7 @@ export class Customer {
 
 
   constructor() {
-    this.passengerId = 0;
+    this.passengerID = 0;
     this.firstName = '';
     this.lastName = '';
     this.email = '';
